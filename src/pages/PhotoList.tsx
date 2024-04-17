@@ -10,6 +10,7 @@ const PhotoList = () => {
   if (!categoryItem) {
     return null
   }
+
   return (
     <section>
       <div className="container">

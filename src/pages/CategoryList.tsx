@@ -1,41 +1,10 @@
 import React from 'react'
-import axios from 'axios'
-import { CategoryType } from '../types/PhotoListTypes'
 import { Link } from 'react-router-dom'
+import useItems from '../hooks/useItems'
 
 // HOME PAGE
 const CategoryList = () => {
-  const [categoryItems, setCategoryItems] = React.useState<CategoryType[]>([])
-
-  function loadAllItems() {
-    async function fetchItems() {
-      try {
-        const response = await axios.get('/photos.json')
-
-        if (response.status === 200) {
-          const data: CategoryType[] = Object.entries(response.data).map(
-            ([category, categoryData]: [string, any]) => ({
-              category,
-              categoryItem: {
-                title: categoryData.title,
-                description: categoryData.description,
-                photos: categoryData.photos,
-              },
-              showAllPhotos: false,
-            })
-          )
-          setCategoryItems(data)
-        }
-      } catch (error) {
-        console.error('Error fetching data:', error)
-      }
-    }
-    fetchItems()
-  }
-
-  React.useEffect(() => {
-    loadAllItems()
-  }, [])
+  const categoryItems = useItems()
 
   return (
     <section>
