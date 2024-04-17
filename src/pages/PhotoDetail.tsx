@@ -1,14 +1,11 @@
 import React from 'react'
-import { useParams } from 'react-router'
-import { Link } from 'react-router-dom'
-import { useCategoryItemContext } from '../context/CategoryItemContext'
+import { Link, useParams } from 'react-router-dom'
+import useItem from '../hooks/useItem'
 
 const PhotoDetail = () => {
+  const categoryItem = useItem()
   const params = useParams<{ category: string; id: string }>()
-  const categoryItemContext = useCategoryItemContext()
-  const photoIndex = parseInt(params.id!)
-  const photos = categoryItemContext.categoryItem.photos
-  const photo = photos[photoIndex]
+  const photo = categoryItem.photos[parseInt(params.id!)]
 
   if (!photo) {
     return null
@@ -28,9 +25,7 @@ const PhotoDetail = () => {
               </Link>
             </li>
             <li>
-              <Link to={`/${params.category}`}>
-                {categoryItemContext.categoryItem.title}
-              </Link>
+              <Link to={`/${params.category}`}>{categoryItem.title}</Link>
             </li>
             <li className="is-active">
               <Link to={`/${params.category}/${params.id}`}>{photo.title}</Link>

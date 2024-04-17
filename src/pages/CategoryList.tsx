@@ -5,6 +5,9 @@ import useItems from '../hooks/useItems'
 // HOME PAGE
 const CategoryList = () => {
   const categoryItems = useItems()
+  if (!categoryItems) {
+    return null
+  }
 
   return (
     <section>

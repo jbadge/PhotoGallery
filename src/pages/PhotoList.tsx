@@ -1,11 +1,10 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import useItem from '../hooks/useItem'
 
 const PhotoList = () => {
-  const params = useParams<{ category: string }>()
   const categoryItem = useItem()
+  const params = useParams<{ category: string }>()
 
   if (!categoryItem) {
     return null
