@@ -2,10 +2,6 @@ import React from 'react'
 import { CategoryType } from '../types/PhotoListTypes'
 import { Link } from 'react-router-dom'
 
-// type Props = CategoryType & {
-//   showAllPhotos?: boolean;
-// }
-
 const CategoryItem = ({
   category,
   categoryItem: { title, description, photos },

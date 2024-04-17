@@ -11,7 +11,6 @@ import { CategoryType } from './types/PhotoListTypes'
 
 export function App() {
   const categoryItemContext = useCategoryItemContext()
-  // const [categoryItems, setCategoryItems] = React.useState<CategoryType[]>([])
 
   function loadAllItems() {
     async function fetchItems() {

@@ -2,11 +2,10 @@ import React from 'react'
 import axios from 'axios'
 import { CategoryType } from '../types/PhotoListTypes'
 import { Link } from 'react-router-dom'
-import { useCategoryItemContext } from '../context/CategoryItemContext'
 
 // HOME PAGE
 const CategoryList = () => {
-  const categoryItemContext = useCategoryItemContext()
+  const [categoryItems, setCategoryItems] = React.useState<CategoryType[]>([])
 
   function loadAllItems() {
     async function fetchItems() {
@@ -25,7 +24,7 @@ const CategoryList = () => {
               showAllPhotos: false,
             })
           )
-          categoryItemContext.setCategoryItems(data)
+          setCategoryItems(data)
         }
       } catch (error) {
         console.error('Error fetching data:', error)
@@ -54,7 +53,7 @@ const CategoryList = () => {
           </ul>
         </nav>
         <div className="columns">
-          {categoryItemContext.categoryItems.map((categoryItem) => (
+          {categoryItems.map((categoryItem) => (
             <div className="column" key={categoryItem.category}>
               <div className="card">
                 <div className="card-content">
