@@ -2,6 +2,7 @@ import React from 'react'
 import { Link, useParams } from 'react-router-dom'
 import useItem from '../hooks/useItem'
 
+// Expanded category page with all photos
 const PhotoList = () => {
   const categoryItem = useItem()
   const params = useParams<{ category: string }>()

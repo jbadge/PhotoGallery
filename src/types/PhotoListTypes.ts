@@ -1,7 +1,6 @@
 export type CategoryType = {
   category: string
   categoryItem: CategoryItemType
-  showAllPhotos?: boolean
 }
 
 export type CategoryItemType = {

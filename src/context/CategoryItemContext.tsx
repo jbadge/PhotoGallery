@@ -1,5 +1,5 @@
 import React from 'react'
-import { CategoryItemType, CategoryType } from '../types/PhotoListTypes'
+import { CategoryType, CategoryItemType } from '../types/PhotoListTypes'
 
 export type CategoryItemContextType = {
   categoryItem: CategoryItemType

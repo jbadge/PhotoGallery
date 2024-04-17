@@ -2,6 +2,7 @@ import React from 'react'
 import { Link, useParams } from 'react-router-dom'
 import useItem from '../hooks/useItem'
 
+// Individual photo page
 const PhotoDetail = () => {
   const categoryItem = useItem()
   const params = useParams<{ category: string; id: string }>()

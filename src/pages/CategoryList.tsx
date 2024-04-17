@@ -5,6 +5,7 @@ import useItems from '../hooks/useItems'
 // HOME PAGE
 const CategoryList = () => {
   const categoryItems = useItems()
+
   if (!categoryItems) {
     return null
   }
@@ -25,35 +26,25 @@ const CategoryList = () => {
           </ul>
         </nav>
         <div className="columns">
-          {categoryItems.map((categoryItem) => (
-            <div className="column" key={categoryItem.category}>
+          {categoryItems.map((item) => (
+            <div className="column" key={item.category}>
               <div className="card">
                 <div className="card-content">
                   <div className="content">
                     <h2>
-                      <Link to={`/${categoryItem.category}`}>
-                        {categoryItem.categoryItem.title}
+                      <Link to={`/${item.category}`}>
+                        {item.categoryItem.title}
                       </Link>
                     </h2>
-                    <p>{categoryItem.categoryItem.description}</p>
+                    <p>{item.categoryItem.description}</p>
                   </div>
                 </div>
                 <div className="card-image">
                   <figure className="image">
-                    {categoryItem.showAllPhotos
-                      ? categoryItem.categoryItem.photos.map((photo) => (
-                          <img
-                            key={photo.title}
-                            src={photo.imageURL}
-                            alt={photo.title}
-                          />
-                        ))
-                      : categoryItem.categoryItem.photos.length > 0 && (
-                          <img
-                            src={categoryItem.categoryItem.photos[0].imageURL}
-                            alt={categoryItem.categoryItem.photos[0].title}
-                          />
-                        )}
+                    <img
+                      src={item.categoryItem.photos[0].imageURL}
+                      alt={item.categoryItem.photos[0].title}
+                    />
                   </figure>
                 </div>
               </div>

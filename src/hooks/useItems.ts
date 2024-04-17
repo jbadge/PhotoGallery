@@ -1,36 +1,31 @@
-import axios from 'axios'
 import React from 'react'
-import { CategoryType } from '../types/PhotoListTypes'
+import response from '../photos.json'
 import { useCategoryItemContext } from '../context/CategoryItemContext'
 
 const useItems = () => {
   const categoryItemContext = useCategoryItemContext()
+  const categoryItemContextRef = React.useRef(categoryItemContext)
 
   React.useEffect(() => {
     async function fetchItems() {
       try {
-        const response = await axios.get('/photos.json')
-
-        if (response.status === 200) {
-          const data: CategoryType[] = Object.entries(response.data).map(
-            ([category, categoryData]: [string, any]) => ({
-              category,
-              categoryItem: {
-                title: categoryData.title,
-                description: categoryData.description,
-                photos: categoryData.photos,
-              },
-              showAllPhotos: false,
-            })
-          )
-          categoryItemContext.setCategoryItems(data)
-        }
+        const data = Object.entries(response).map(
+          ([category, categoryItem]: [string, any]) => ({
+            category,
+            categoryItem: {
+              title: categoryItem.title,
+              description: categoryItem.description,
+              photos: categoryItem.photos,
+            },
+          })
+        )
+        categoryItemContextRef.current.setCategoryItems(data)
       } catch (error) {
         console.error('Error fetching data:', error)
       }
     }
     fetchItems()
-  }, [])
+  }, [categoryItemContextRef])
 
   return categoryItemContext.categoryItems
 }
